@@ -97,20 +97,22 @@ static String SERVIDOR = "http://192.168.1.48/scripts/";
                 Node nodo = hijos.item(i);
                 if (nodo instanceof Element) {
                     NodeList nietos = nodo.getChildNodes();
-                    String[] fila = new String[nietos.getLength()];
-                    System.out.println("" + nodo.getNodeName());
+
                     System.out.println("Nietos:" + nietos.getLength());
-                    int numero = 0;
+
+                    String registro = "";
                     for (int j = 0; j < nietos.getLength(); j++) {
                         if (nietos.item(j) instanceof Element) {
 
-                            fila[numero] = nietos.item(j).getTextContent();
-                            numero++;
                             System.out.println("" + nietos.item(j).getNodeName() + " " + nietos.item(j).getTextContent());
+                            registro+=" " + nietos.item(j).getNodeName() + " " + nietos.item(j).getTextContent();
+
                         }
                     }
-                    //modelo.addRow(fila);
-                    numero = 0;
+
+                    list.add(registro);
+
+
 
                 }
             }
@@ -122,6 +124,11 @@ static String SERVIDOR = "http://192.168.1.48/scripts/";
         }
 
             return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
         }
 
         @Override
